@@ -1,0 +1,28 @@
+<% include partials/header.ejs %>
+<main class="container">
+    <div class="page-header">
+        <h1>Timeline Story <small>about a girl named Sophia</small></h1>
+    </div>
+    
+    <form method="POST" enctype="multipart/form-data">
+        <fieldset class="form-group">
+            <label for="displayImage" class="control-label col-sm-2">Image: </label>
+            <input type="file" id="displayImage" name="displayImage" />
+        </fieldset>
+        <fieldset class="form-group">
+            <label for="title" class="control-label col-sm-2">Title:* </label>
+            <div class="col-sm-6">
+                <input type="text" id="title" name="title" class="form-control" required />
+            </div>  
+        </fieldset>
+        <fieldset class="form-group">
+            <label for="content" class="control-label col-sm-2">Content: </label>
+            <div class="col-sm-6">
+                <textarea id="content" name="content" class="form-control"></textarea>
+            </div>
+        </fieldset>
+        <button type="submit" class="btn btn-success col-sm-offset-2">Post</button>
+    </form>
+    
+</main>
+<% include partials/footer.ejs %>

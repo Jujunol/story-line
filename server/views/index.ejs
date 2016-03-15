@@ -1,0 +1,28 @@
+<% include partials/header.ejs %>
+<main class="container">
+    <div class="page-header">
+        <h1>Timeline Story <small>about a girl named Sophia</small></h1>
+    </div>
+    <div class="col-sm-offset-1">
+        <a href="/create" class="btn btn-success">Post <span class="glyphicon glyphicon-plus"></span></a>
+        <a href="#mostRecent" class="btn btn-success">Most Recent</a>
+    </div>
+    
+    <% for(var i = 0; i < posts.length; i++) { %>
+        <div class="thumbnail col-sm-10 col-sm-offset-1">
+            <% if(posts[i].image) { %>
+                <img src="<%= posts[i].image %>" />
+            <% } %>
+            <div class="caption">
+                <%= posts[i].content %>
+                <div class="clearfix"></div>
+                <div class="signature">
+                    <%= posts[i].created %>
+                </div>
+            </div>
+        </div>
+    <% } %>
+    <div id="mostRecent" class="clearfix"></div>
+    
+</main>
+<% include partials/footer.ejs %>
