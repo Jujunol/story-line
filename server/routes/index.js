@@ -2,7 +2,6 @@
 
 var express = require('express');
 var mongoose = require('mongoose');
-var fs = require('fs');
 var postModel = require('../models/post');
 
 var router = express.Router();
@@ -27,13 +26,19 @@ router.get('/create', function(req, res, next) {
 
 // uploaded image
 router.post('/create', function(req, res, next) {
-    fs.readFile(req.files.displayImage.path, function(error, data) {
-        if(error) throw error;
-        var uploadPath = "/public/uploads/" + req.files.displayImage.filename;
-        fs.writeFile(uploadPath, data, function(error) {
-            res.redirect("back");
-        });
+    post.create({
+        content: req.body.content,
+        image: req.file.filename,
+        created: req.body.postDate
+    }, function(error) {
+        if(error) {
+            console.log("Unable to create post");
+            console.log(error);
+            throw error;
+        }
     });
+    console.log(req.file);
+    res.redirect("/");
 });
 
 module.exports = router;

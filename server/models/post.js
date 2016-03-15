@@ -3,16 +3,18 @@
 var mongoose = require('mongoose');
 
 var schema = new mongoose.Schema({
-    title: {
-        type: 'String',
-        default: '',
-        trim: true,
-        required: 'A title is required'
-    },
     content: {
         type: 'String',
         default: '',
         trim: true
+    },
+    image: {
+        type: 'String',
+        default: null
+    }, 
+    created: {
+        type: Date,
+        default: Date.now
     }
 });
 

@@ -6,19 +6,19 @@
     
     <form method="POST" enctype="multipart/form-data">
         <fieldset class="form-group">
-            <label for="displayImage" class="control-label col-sm-2">Image: </label>
-            <input type="file" id="displayImage" name="displayImage" />
-        </fieldset>
-        <fieldset class="form-group">
-            <label for="title" class="control-label col-sm-2">Title:* </label>
-            <div class="col-sm-6">
-                <input type="text" id="title" name="title" class="form-control" required />
-            </div>  
+            <label for="image" class="control-label col-sm-2">Image: </label>
+            <input type="file" id="image" name="image" />
         </fieldset>
         <fieldset class="form-group">
             <label for="content" class="control-label col-sm-2">Content: </label>
             <div class="col-sm-6">
                 <textarea id="content" name="content" class="form-control"></textarea>
+            </div>
+        </fieldset>
+        <fieldset class="form-group">
+            <label for="postDate" class="control-label col-sm-2">Post Date: </label>
+            <div class="col-sm-6">
+                <input type="date" id="postDate" name="postDate" />
             </div>
         </fieldset>
         <button type="submit" class="btn btn-success col-sm-offset-2">Post</button>
