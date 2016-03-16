@@ -1,3 +1,19 @@
+body {
+    font-size: large;
+}
+.signature {
+    float: right;
+    color: #AEAEAE;
+    font-style: italic;
+    font-weight: bold;
+}
+.clearfix {
+    width: 100%;
+    clear: both;
+    display: block;
+    visibility: hidden;
+}
 img {
-    max-height: 600px;
+    max-width: 100%;
+    max-height: 32em;
 }
