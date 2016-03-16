@@ -26,18 +26,20 @@ router.get('/create', function(req, res, next) {
 
 // uploaded image
 router.post('/create', function(req, res, next) {
-    post.create({
+    var data = {
         content: req.body.content,
-        image: req.file.filename,
         created: req.body.postDate
-    }, function(error) {
+    };
+    if(req.file) {
+        data.image = req.file.filename;
+    }
+    post.create(data, function(error) {
         if(error) {
             console.log("Unable to create post");
             console.log(error);
             throw error;
         }
     });
-    console.log(req.file);
     res.redirect("/");
 });
 
