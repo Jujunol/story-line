@@ -1,17 +1,14 @@
 /// <reference path="../../typings/tsd.d.ts" />
 
-var express = require('express');
-var mongoose = require('mongoose');
-var postModel = require('../models/post');
+var post = require('../models/post');
 
-var router = express.Router();
-var post = postModel.Post;
+var router = require('express').Router();
 
 router.get('/', function(req, res, next) {
     post.find(function(error, posts) {
         if(error) throw error;
         res.render('index', {
-            title: "A story about a girl named Sophia",
+            title: "Timeline Story - A story about a girl named Sophia",
             posts: posts
         });
     });
@@ -42,5 +39,11 @@ router.post('/create', function(req, res, next) {
     });
     res.redirect("/");
 });
+
+// 404 error catch
+var error404 = function(req, res, next) {
+    res.redirect('/');
+};
+router.get('*', error404).post('*', error404);
 
 module.exports = router;

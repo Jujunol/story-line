@@ -3,19 +3,18 @@
 var mongoose = require('mongoose');
 
 var schema = new mongoose.Schema({
-    content: {
-        type: 'String',
+    username: {
+        type: String,
         default: '',
-        trim: true
+        trim: true,
+        required: 'Username is required'
     },
-    image: {
-        type: 'String',
-        default: null
-    }, 
     created: {
         type: Date,
         default: Date.now
     }
 });
 
-module.exports = mongoose.model('Post', schema);
+schema.plugin(require('passport-local-mongoose'));
+
+module.exports = mongoose.model('Admin', schema);

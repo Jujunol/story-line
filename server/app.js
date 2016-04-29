@@ -5,11 +5,14 @@ var path = require('path');
 var mongoose = require('mongoose');
 var multer = require('multer');
 // var favicon = require('serve-favicon');
-// var logger = require('morgan');
+var logger = require('morgan');
 // var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
 
 var routes = require('./routes/index');
+var admins = require('./routes/admins');
 // var users = require('./routes/users');
 
 var app = express();
@@ -29,10 +32,17 @@ app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-// app.use(logger('dev'));
+app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 // app.use(cookieParser());
+app.use(require('express-session')({
+    secret: "SuperSecret90",
+    resave: true,
+    saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(multer({ dest: 'public/uploads/' }).single('image'));
 
 // setup static routing
@@ -42,7 +52,7 @@ app.use('/res', express.static(path.join(path.dirname(__dirname), 'public')));
 
 // setup routers
 app.use('/', routes);
-// app.use('/users', users);
+app.use('/admin', admins);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -50,6 +60,12 @@ app.use(function (req, res, next) {
     err.status = 404;
     next(err);
 });
+
+// Passport configuration
+var admin = require('./models/admin');
+passport.use(new LocalStrategy(admin.authenticate()));
+passport.serializeUser(admin.serializeUser());
+passport.deserializeUser(admin.deserializeUser());
 
 // error handlers
 
