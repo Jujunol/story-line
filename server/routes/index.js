@@ -40,10 +40,4 @@ router.post('/create', function(req, res, next) {
     res.redirect("/");
 });
 
-// 404 error catch
-var error404 = function(req, res, next) {
-    res.redirect('/');
-};
-router.get('*', error404).post('*', error404);
-
 module.exports = router;
