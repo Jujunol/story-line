@@ -1,0 +1,26 @@
+.clearfix {
+    width: 100%;
+    clear: both;
+    display: block;
+    visibility: hidden;
+}
+
+.gridpanel {
+    border-radius: 0;
+    border-width: 0 0 0 1px;
+    font: 16px Arial, sans-serif;
+    font-weight: bold;
+}
+
+.circle {
+    background: #FFF;
+    border: 4px solid #999;
+    border-radius: 50%;
+    font: 32px Arial, sans-serif;
+    color: #666;
+    text-align: center;
+    margin: 16px auto;
+    width: 60px;
+    height: 60px;
+    line-height: 50px;
+}
